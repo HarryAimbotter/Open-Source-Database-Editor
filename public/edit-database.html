@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Database</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="edit-database.html">Edit Database</a>
+        <a href="search.html">Search Players</a>
+    </div>
+    <div class="container">
+        <h1>Edit Database</h1>
+        <form id="editForm" onsubmit="submitForm(event)">
+            <label for="playerId">Player ID:</label>
+            <input type="number" id="playerId" name="playerId" required>
+            <button type="button" onclick="fetchPlayer()">Fetch Player</button>
+            <div id="playerDetails" class="player-details">
+                <!-- skrt skrt -->
+            </div>
+            <button type="submit">Update Player</button>
+        </form>
+    </div>
+<footer>
+        Made by ToastieMalonie for Open-RSC
+</footer>
+    <script>
+        function fetchPlayer() {
+            const playerId = document.getElementById('playerId').value;
+            fetch(`/players/${playerId}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayPlayerDetails(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching player:', error);
+                });
+        }
+
+        function displayPlayerDetails(player) {
+            const playerDetails = document.getElementById('playerDetails');
+            playerDetails.innerHTML = `
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="${player.username}"><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="${player.email}"><br>
+                <label for="group_id">Group ID:</label>
+                <input type="number" id="group_id" name="group_id" value="${player.group_id}"><br>
+                <label for="pass">Password:</label>
+                <input type="text" id="pass" name="pass" value="${player.pass}"><br>
+                <label for="salt">Salt:</label>
+                <input type="text" id="salt" name="salt" value="${player.salt}"><br>
+                <label for="combat">Combat:</label>
+                <input type="number" id="combat" name="combat" value="${player.combat}"><br>
+                <label for="skill_total">Skill Total:</label>
+                <input type="number" id="skill_total" name="skill_total" value="${player.skill_total}"><br>
+                <label for="x">X Coordinate:</label>
+                <input type="number" id="x" name="x" value="${player.x}"><br>
+                <label for="y">Y Coordinate:</label>
+                <input type="number" id="y" name="y" value="${player.y}"><br>
+                <label for="fatigue">Fatigue:</label>
+                <input type="number" id="fatigue" name="fatigue" value="${player.fatigue}"><br>
+                <label for="combatstyle">Combat Style:</label>
+                <input type="text" id="combatstyle" name="combatstyle" value="${player.combatstyle}"><br>
+                <label for="block_chat">Block Chat:</label>
+                <input type="number" id="block_chat" name="block_chat" value="${player.block_chat}"><br>
+                <label for="block_private">Block Private:</label>
+                <input type="number" id="block_private" name="block_private" value="${player.block_private}"><br>
+                <label for="block_trade">Block Trade:</label>
+                <input type="number" id="block_trade" name="block_trade" value="${player.block_trade}"><br>
+                <label for="block_duel">Block Duel:</label>
+                <input type="number" id="block_duel" name="block_duel" value="${player.block_duel}"><br>
+                <label for="cameraauto">Camera Auto:</label>
+                <input type="number" id="cameraauto" name="cameraauto" value="${player.cameraauto}"><br>
+                <label for="onemouse">One Mouse:</label>
+                <input type="number" id="onemouse" name="onemouse" value="${player.onemouse}"><br>
+                <label for="soundoff">Sound Off:</label>
+                <input type="number" id="soundoff" name="soundoff" value="${player.soundoff}"><br>
+                <label for="haircolour">Hair Colour:</label>
+                <input type="text" id="haircolour" name="haircolour" value="${player.haircolour}"><br>
+                <label for="topcolour">Top Colour:</label>
+                <input type="text" id="topcolour" name="topcolour" value="${player.topcolour}"><br>
+                <label for="trousercolour">Trouser Colour:</label>
+                <input type="text" id="trousercolour" name="trousercolour" value="${player.trousercolour}"><br>
+                <label for="skincolour">Skin Colour:</label>
+                <input type="text" id="skincolour" name="skincolour" value="${player.skincolour}"><br>
+                <label for="headsprite">Head Sprite:</label>
+                <input type="text" id="headsprite" name="headsprite" value="${player.headsprite}"><br>
+                <label for="bodysprite">Body Sprite:</label>
+                <input type="text" id="bodysprite" name="bodysprite" value="${player.bodysprite}"><br>
+                <label for="male">Male:</label>
+                <input type="number" id="male" name="male" value="${player.male}"><br>
+                <label for="creation_date">Creation Date:</label>
+                <input type="text" id="creation_date" name="creation_date" value="${player.creation_date}"><br>
+                <label for="creation_ip">Creation IP:</label>
+                <input type="text" id="creation_ip" name="creation_ip" value="${player.creation_ip}"><br>
+                <label for="login_date">Login Date:</label>
+                <input type="text" id="login_date" name="login_date" value="${player.login_date}"><br>
+                <label for="login_ip">Login IP:</label>
+                <input type="text" id="login_ip" name="login_ip" value="${player.login_ip}"><br>
+                <label for="banned">Banned:</label>
+                <input type="number" id="banned" name="banned" value="${player.banned}"><br>
+                <label for="offences">Offences:</label>
+                <input type="number" id="offences" name="offences" value="${player.offences}"><br>
+                <label for="muted">Muted:</label>
+                <input type="number" id="muted" name="muted" value="${player.muted}"><br>
+                <label for="kills">Kills:</label>
+                <input type="number" id="kills" name="kills" value="${player.kills}"><br>
+                <label for="npc_kills">NPC Kills:</label>
+                <input type="number" id="npc_kills" name="npc_kills" value="${player.npc_kills}"><br>
+                <label for="deaths">Deaths:</label>
+                <input type="number" id="deaths" name="deaths" value="${player.deaths}"><br>
+                <label for="online">Online:</label>
+                <input type="number" id="online" name="online" value="${player.online}"><br>
+                <label for="quest_points">Quest Points:</label>
+                <input type="number" id="quest_points" name="quest_points" value="${player.quest_points}"><br>
+                <label for="bank_size">Bank Size:</label>
+                <input type="number" id="bank_size" name="bank_size" value="${player.bank_size}"><br>
+                <label for="lastRecoveryTryId">Last Recovery Try ID:</label>
+                <input type="number" id="lastRecoveryTryId" name="lastRecoveryTryId" value="${player.lastRecoveryTryId}"><br>
+            `;
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const playerId = document.getElementById('playerId').value;
+
+            const formData = new FormData(document.getElementById('editForm'));
+
+            const data = {};
+            for (const [key, value] of formData.entries()) {
+                if (value !== '') {
+                    data[key] = value;
+                }
+            }
+
+            fetch(`/players/${playerId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error updating player:', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Open-RSC Open-Source Database Editor",
+  "version": "1.0.1",
+  "description": "Open-RSC Open-Source Database Editor",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Toastie",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  }
+}
