@@ -9,6 +9,8 @@ Media:
 
 
 
+** Before Starting **
+Please ensure you have node / npm / dependencies 
 
 ** Getting Started **
 1. Setup lines [9, 10, 11, 12] in your app.js with your database infomation
@@ -18,4 +20,3 @@ Media:
 5. If the database is hosted on your local machine you can navigate to http://localhost:3000
 
 
-by toastiemalone
